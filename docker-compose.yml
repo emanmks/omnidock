@@ -6,19 +6,35 @@ networks:
 
 services:
 
-## PHP Container
+## PHP
     php:
         build:
             context: ./php
             args:
+                - UBUNTU_VERSION=${UBUNTU_VERSION}
                 - TZ=${WORKSPACE_TIMEZONE}
+                - PHP_PORT=${PHP_PORT}
         volumes:
             - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
         ports:
-            - "${PHP_PORT}:8000"
+            - "${PHP_PORT}:${PHP_PORT}"
         networks:
             - omninetwork
         container_name: php
+
+## Python
+    python-app:
+        build:
+            context: ./python
+            args:
+                - UBUNTU_VERSION=${UBUNTU_VERSION}
+                - TZ=${WORKSPACE_TIMEZONE}
+                - PYTHON_PORT=${PYTHON_PORT}
+        volumes:
+            - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+        ports:
+            - "${PYTHON_PORT}:${PYTHON_PORT}"
+        container_name: python
 
 ## MySQL Database
     mysql:

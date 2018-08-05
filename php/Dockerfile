@@ -1,16 +1,12 @@
-FROM library/ubuntu:18.04
+ARG UBUNTU_VERSION=18.04
+FROM library/ubuntu:${UBUNTU_VERSION}
 
 ARG PHP_VERSION=7.2
-ENV PHP_VERSIOn ${PHP_VERSION}
+ENV PHP_VERSION ${PHP_VERSION}
 
 LABEL maintainer="Solaiman Mansyur <solaiman.mansyur@gmail.com>"
 
-# Set Environment Variables
 ENV DEBIAN_FRONTEND noninteractive
-
-# Start as root
-USER root
-
 
 ###########################################################################
 # Core System Installation
@@ -64,7 +60,6 @@ ENV PUID ${PUID}
 ARG PGID=1000
 ENV PGID ${PGID}
 
-# always run apt update when start and after add new source list, then clean up at end.
 RUN groupadd -g ${PGID} omnidock && \
     useradd -u ${PUID} -g omnidock -m omnidock && \
     usermod -p "*" omnidock
@@ -89,8 +84,10 @@ RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     rm /var/log/lastlog /var/log/faillog
 
-WORKDIR /var/www
+WORKDIR /var/www/
 
-EXPOSE 8000
+ARG PHP_PORT=8000
+ENV PHP_PORT ${PHP_PORT}
+EXPOSE ${PHP_PORT}
 
 CMD ["supervisord", "-n"]
