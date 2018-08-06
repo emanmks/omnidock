@@ -114,3 +114,13 @@ services:
         networks:
             - omninetwork
         container_name: redis
+
+    redis-admin:
+        image: faktiva/php-redis-admin
+        environment:
+            - PHPREDMIN_DATABASE_REDIS_0_HOST=redis
+        ports:
+            - "${REDIS_ADMIN_PORT}:80"
+        networks:
+            - omninetwork
+        container_name: redis-admin

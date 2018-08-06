@@ -66,4 +66,5 @@ MONGOCLIENT_PORT=3000
 
 REDIS_VERSION=latest
 REDIS_PORT=6379
+REDIS_ADMIN_PORT=8090
 ####################################################################
