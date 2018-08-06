@@ -93,6 +93,17 @@ services:
             - omninetwork
         container_name: mongo
 
+    mongoclient:
+        image: mongoclient/mongoclient:2.2.0
+        ports:
+            - "${MONGOCLIENT_PORT}:3000"
+        environment:
+            - MONGO_URL=${MONGO_URL}
+            - INSTALL_MONGO=${INSTALL_MONGO}
+        networks:
+            - omninetwork
+        container_name: mongoclient
+
 ## Redis
     redis:
         image: redis:${REDIS_VERSION}

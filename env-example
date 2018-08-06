@@ -55,6 +55,9 @@ POSTGRES_PASSWORD=secret
 
 MONGODB_VERSION=latest
 MONGODB_PORT=27017
+MONGO_URL=mongodb://mongo:27017/omnimongo
+MONGOCLIENT_INSTALL_MONGO=0
+MONGOCLIENT_PORT=3000
 ####################################################################
 
 ##
