@@ -36,6 +36,19 @@ services:
             - "${PYTHON_PORT}:${PYTHON_PORT}"
         container_name: python
 
+## NodeJS
+    nodejs:
+        build:
+            context: ./nodejs
+            args:
+                - NODE_VERSION=${NODE_VERSION}
+                - NODE_PORT=${NODE_PORT}
+        volumes:
+            - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+        ports:
+            - "${NODE_PORT}:${NODE_PORT}"
+        container_name: nodejs
+
 ## MySQL Database
     mysql:
         image: mysql:${MYSQL_VERSION}

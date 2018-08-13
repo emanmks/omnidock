@@ -2,6 +2,7 @@
 ### Shared Env
 ##
 
+UBUNTU_VERSION=18.04
 APP_CODE_PATH_HOST=/home/eman/dev
 APP_CODE_PATH_CONTAINER=/var/www
 DATA_PATH_HOST=/home/eman/dev-data
@@ -22,6 +23,14 @@ PHP_PORT=8000
 ##
 
 PYTHON_PORT=5000
+####################################################################
+
+##
+### NodeJS
+##
+
+NODE_VERSION=8
+NODE_PORT=7000
 ####################################################################
 
 ##
